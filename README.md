@@ -1,160 +1,165 @@
 
-# Active Directory Home Lab
+# Active Directory Home Lab – Windows Server 2022
 
 ## 1. Project Overview
 
-This project demonstrates the deployment and configuration of an Active Directory home lab using Oracle VirtualBox, Windows Server 2022, and Windows 11.
+This project demonstrates the deployment and configuration of an Active Directory home lab using Windows Server 2022 and Windows 11 in Oracle VirtualBox.
 
-Windows Server 2022 was configured as a Domain Controller to provide centralized user and domain management. The lab also includes DHCP, DNS, Routing and Remote Access (RRAS) with NAT, and bulk user account creation using PowerShell.
-
-A Windows 11 client virtual machine was connected to the internal network, joined to the Active Directory domain, and tested using a domain user account.
+The purpose of this lab was to gain hands-on experience with Windows Server administration, Active Directory Domain Services, user management, network services, and domain authentication.
 
 ## 2. Lab Environment
 
-The lab was created using Oracle VirtualBox with two virtual machines:
+The lab was built using the following virtual machines:
 
-- **Windows Server 2022:** Configured as the Domain Controller.
-- **Windows 11:** Configured as the client machine.
-
-The following technologies and services were used:
-
-| Component | Description |
+| Component | Configuration |
 |---|---|
-| Virtualization | Oracle VirtualBox |
-| Server Operating System | Windows Server 2022 |
-| Client Operating System | Windows 11 |
-| Directory Service | Active Directory Domain Services |
-| Network Services | DNS and DHCP |
-| Routing | RRAS and NAT |
-| Scripting | Windows PowerShell |
+| Virtualization Platform | Oracle VirtualBox |
+| Domain Controller | Windows Server 2022 |
+| Server Name | DC1 |
+| Client Machine | Windows 11 |
+| Client Name | CLIENT1 |
+| Active Directory Domain | mydomain.com |
 
-**Virtual Machine Setup**
+**Screenshot – Virtual Machine Setup**
 
-![Virtual Machine Setup](screenshots/labsetup.png)
+![VirtualBox Lab Setup](labsetup.png)
 
 ## 3. Network Configuration
 
-The Domain Controller was configured with two network adapters to connect the internal lab network and external network.
+Two network adapters were configured on the Domain Controller:
 
-A static IP address was assigned to the server's internal network adapter to provide a consistent address for Active Directory and network services.
+- **Internal:** Used for communication within the lab network.
+- **External:** Used for external network connectivity.
 
-The following network settings were used in the lab:
+The Internal adapter was assigned a static IPv4 address of `172.16.0.1`, while the External adapter obtained its IP configuration through DHCP.
 
-| Setting | Value |
-|---|---|
-| Domain Name | `mydomain.com` |
-| Domain Controller IP | `172.16.0.1` |
-| Subnet Mask | `255.255.255.0` |
-| DHCP Scope | `172.16.0.100 – 172.16.0.200` |
-| Default Gateway | `172.16.0.1` |
-| DNS Server | `172.16.0.1` |
+IPv6 was enabled on both adapters.
 
-*Note: Verify these values against your actual lab configuration before publishing.*
+**Screenshot – Network Adapters**
 
-**Server Network Adapter Configuration**
-
-![Server Network Configuration](screenshots/servernetwork.png)
+![Server Network Adapters](servernetwork.png)
 
 ## 4. Server Configuration
 
-Windows Server 2022 was configured with a static IP address on its internal network adapter.
+The Windows Server machine was renamed to `DC1`.
 
-The server was also renamed to prepare it for its role as the Domain Controller.
+Server Manager was used to review the server configuration, including the computer name and network adapter settings.
 
-**Server Configuration**
+**Screenshot – Server Configuration**
 
-![Server Configuration](screenshots/serverconfig.png)
+![Server Configuration](serverconfig.png)
 
 ## 5. Active Directory Installation and Domain Setup
 
-The Active Directory Domain Services (AD DS) role was installed on Windows Server 2022.
+Active Directory Domain Services (AD DS) was installed and configured on Windows Server 2022.
 
-The server was then promoted to a Domain Controller, and a new domain was created.
+The server was promoted to a Domain Controller, establishing the Active Directory domain `mydomain.com`.
 
-This allowed the server to centrally manage domain users, computers, and authentication.
+Active Directory Users and Computers (ADUC) was used to manage and view the domain structure.
 
-**Active Directory Domain Setup**
+**Screenshot – Active Directory Domain**
 
-![Active Directory Domain Setup](screenshots/addomain.png)
+![Active Directory Domain](addomain.png)
 
 ## 6. Organizational Unit and Administrator Configuration
 
-An Organizational Unit (OU) was created to organize and manage domain accounts.
+An Organizational Unit named `_ADMINS` was created to organize administrative accounts.
 
-A dedicated administrator account was also created and assigned the appropriate domain administrative permissions.
+An administrator account was placed inside the OU and assigned Domain Admin privileges.
 
-This provides a structured way to manage users and administrative access within Active Directory.
+This account was used to perform administrative tasks within the domain.
 
-**Administrator and OU Configuration**
+**Screenshot – Administrator OU**
 
-![Administrator and OU Configuration](screenshots/adminou.png)
+![Administrator OU](adminou.png)
 
 ## 7. Routing and NAT Configuration
 
 Routing and Remote Access (RRAS) was configured to provide Network Address Translation (NAT).
 
-The external network adapter was configured for external connectivity, while the internal adapter provided connectivity to the lab network.
+The External interface was configured as the public interface, while the Internal interface was configured as a private interface.
 
-This allowed internal client machines to access external networks through the Domain Controller.
+NAT allows devices on the internal network to access external networks through the server.
 
-**RRAS and NAT Configuration**
+**Screenshot – RRAS and NAT Configuration**
 
-![RRAS and NAT Configuration](screenshots/rrasnat.png)
+![RRAS NAT Configuration](rrasnat.png)
 
 ## 8. DHCP Configuration
 
-The DHCP Server role was installed and configured to automatically assign IP addresses to client devices.
+The DHCP Server role was configured to provide automatic IP address assignment to devices on the network.
 
-A DHCP scope was created with an address range for the internal network.
+An IPv4 scope was created and activated, with an address range configured from 100 to 200 in the selected network.
 
-The DHCP configuration also included the appropriate default gateway and DNS server settings.
+The DHCP management console was used to view the configured scope and its management options.
 
-**DHCP Scope and Network Options**
+**Screenshot – DHCP Configuration**
 
-![DHCP Configuration](screenshots/dhcpconfig.png)
+![DHCP Configuration](dhcpconfig.png)
 
 ## 9. Bulk User Creation Using PowerShell
 
-PowerShell was utilized to automate the creation of multiple Active Directory user accounts, making the account provisioning process more efficient.
+PowerShell was utilized to automate the creation of multiple Active Directory user accounts.
 
-Script execution permissions were configured before executing the PowerShell script.
+A supplied PowerShell script was executed to generate bulk user accounts, reducing the need to create each account manually.
 
-Following execution, the newly created user accounts were verified in Active Directory Users and Computers.
+The created accounts were then viewed in Active Directory Users and Computers.
 
-**PowerShell Bulk User Creation**
+**Screenshot – PowerShell User Creation**
 
-![PowerShell Bulk User Creation](screenshots/bulkusers.png)
+![Bulk User Creation](bulkusers.png)
 
-**Active Directory User Accounts**
+**Screenshot – Active Directory User Accounts**
 
-![Active Directory User Accounts](screenshots/adusers.png)
+![Active Directory Users](adusers.png)
 
-## 10. Windows 11 Client Configuration and Domain Join
+## 10. Windows 11 Client Configuration
 
-A Windows 11 virtual machine was configured as the client machine.
+A Windows 11 virtual machine was installed and configured as the client machine.
 
-The client was connected to the internal lab network and configured to obtain its network settings through DHCP.
+The computer was renamed to `CLIENT1`, and its network configuration was checked using the `ipconfig /all` command.
 
-The assigned IP address and DNS settings were checked to confirm network connectivity.
+**Screenshot – Client Network Configuration**
 
-**Windows 11 Client Network Configuration**
+![Client Network Configuration](clientnetwork.png)
 
-![Windows 11 Client Network Configuration](screenshots/clientnetwork.png)
+## 11. Domain Join and Authentication Verification
 
-The Windows 11 client was then joined to the Active Directory domain.
+The Windows 11 client was successfully joined to the Active Directory domain `mydomain.com`.
 
-After successfully joining the domain, the client became part of the centrally managed network.
+After restarting the client, a regular domain user account was used to sign in.
 
-**Successful Domain Join**
+The `whoami` command was executed in Command Prompt to verify the authenticated domain user account.
 
-![Windows 11 Domain Join](screenshots/domainjoin.png)
+**Screenshot – Successful Domain Join**
 
-## 11. Domain Login and Verification
+![Domain Join](domainjoin.png)
 
-The final step was to verify domain authentication by signing in to the Windows 11 client using a domain user account.
+**Screenshot – Domain Login Verification**
 
-Successful login confirmed that the client could authenticate against the Active Directory Domain Controller.
+![Domain Login Verification](domainlogin.png)
 
-**Successful Domain User Login**
+## 12. Project Files
 
-![Successful Domain User Login](screenshots/domainlogin.png)
+The PowerShell script package used for bulk Active Directory user creation is included in the repository.
+
+**Included file:**
+- `AD_PS-master (1).zip` – PowerShell script package used during the lab.
+
+## 13. Conclusion
+
+This home lab provided practical experience in deploying and managing a Windows Server Active Directory environment.
+
+The project covered:
+
+- Windows Server 2022 configuration
+- Active Directory Domain Services installation
+- Domain Controller setup
+- Organizational Unit and administrator management
+- Bulk user creation using PowerShell
+- DHCP configuration
+- Routing and NAT configuration
+- Windows 11 client configuration
+- Domain joining and authentication verification
+
+Successfully joining the Windows 11 client to the domain and verifying domain authentication demonstrated the core functionality of the Active Directory environment.
