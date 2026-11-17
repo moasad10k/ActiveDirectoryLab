@@ -146,7 +146,7 @@ The PowerShell script package used for bulk Active Directory user creation is in
 
 **Included file:**
 
-- `AD_PS-master (1).zip` – PowerShell script package used during the lab.
+- [AD_PS-master (1).zip](AD_PS-master%20(1).zip) – PowerShell script package used during the lab.
 
 ## 13. Conclusion
 
