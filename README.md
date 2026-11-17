@@ -1,4 +1,5 @@
 
+
 # Active Directory Home Lab – Windows Server 2022
 
 ## 1. Project Overview
@@ -22,7 +23,7 @@ The lab was built using the following virtual machines:
 
 **Screenshot – Virtual Machine Setup**
 
-![VirtualBox Lab Setup](labsetup.png)
+![VirtualBox Lab Setup](screenshots/labsetup.png)
 
 ## 3. Network Configuration
 
@@ -37,7 +38,7 @@ IPv6 was enabled on both adapters.
 
 **Screenshot – Network Adapters**
 
-![Server Network Adapters](servernetwork.png)
+![Server Network Adapters](screenshots/servernetwork.png)
 
 ## 4. Server Configuration
 
@@ -47,7 +48,7 @@ Server Manager was used to review the server configuration, including the comput
 
 **Screenshot – Server Configuration**
 
-![Server Configuration](serverconfig.png)
+![Server Configuration](screenshots/serverconfig.png)
 
 ## 5. Active Directory Installation and Domain Setup
 
@@ -59,7 +60,7 @@ Active Directory Users and Computers (ADUC) was used to manage and view the doma
 
 **Screenshot – Active Directory Domain**
 
-![Active Directory Domain](addomain.png)
+![Active Directory Domain](screenshots/addomain.png)
 
 ## 6. Organizational Unit and Administrator Configuration
 
@@ -71,7 +72,7 @@ This account was used to perform administrative tasks within the domain.
 
 **Screenshot – Administrator OU**
 
-![Administrator OU](adminou.png)
+![Administrator OU](screenshots/adminou.png)
 
 ## 7. Routing and NAT Configuration
 
@@ -83,7 +84,7 @@ NAT allows devices on the internal network to access external networks through t
 
 **Screenshot – RRAS and NAT Configuration**
 
-![RRAS NAT Configuration](rrasnat.png)
+![RRAS NAT Configuration](screenshots/rrasnat.png)
 
 ## 8. DHCP Configuration
 
@@ -95,7 +96,7 @@ The DHCP management console was used to view the configured scope and its manage
 
 **Screenshot – DHCP Configuration**
 
-![DHCP Configuration](dhcpconfig.png)
+![DHCP Configuration](screenshots/dhcpconfig.png)
 
 ## 9. Bulk User Creation Using PowerShell
 
@@ -107,11 +108,11 @@ The created accounts were then viewed in Active Directory Users and Computers.
 
 **Screenshot – PowerShell User Creation**
 
-![Bulk User Creation](bulkusers.png)
+![Bulk User Creation](screenshots/bulkusers.png)
 
 **Screenshot – Active Directory User Accounts**
 
-![Active Directory Users](adusers.png)
+![Active Directory Users](screenshots/adusers.png)
 
 ## 10. Windows 11 Client Configuration
 
@@ -121,7 +122,7 @@ The computer was renamed to `CLIENT1`, and its network configuration was checked
 
 **Screenshot – Client Network Configuration**
 
-![Client Network Configuration](clientnetwork.png)
+![Client Network Configuration](screenshots/clientnetwork.png)
 
 ## 11. Domain Join and Authentication Verification
 
@@ -133,17 +134,18 @@ The `whoami` command was executed in Command Prompt to verify the authenticated 
 
 **Screenshot – Successful Domain Join**
 
-![Domain Join](domainjoin.png)
+![Domain Join](screenshots/domainjoin.png)
 
 **Screenshot – Domain Login Verification**
 
-![Domain Login Verification](domainlogin.png)
+![Domain Login Verification](screenshots/domainlogin.png)
 
 ## 12. Project Files
 
 The PowerShell script package used for bulk Active Directory user creation is included in the repository.
 
 **Included file:**
+
 - `AD_PS-master (1).zip` – PowerShell script package used during the lab.
 
 ## 13. Conclusion
