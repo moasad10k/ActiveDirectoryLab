@@ -16,7 +16,7 @@ The lab was built using the following virtual machines:
 |---|---|
 | Virtualization Platform | Oracle VirtualBox |
 | Domain Controller | Windows Server 2022 |
-| Server Name | DC1 |
+| Server Name | DC |
 | Client Machine | Windows 11 |
 | Client Name | CLIENT1 |
 | Active Directory Domain | mydomain.com |
@@ -42,7 +42,7 @@ IPv6 was enabled on both adapters.
 
 ## 4. Server Configuration
 
-The Windows Server machine was renamed to `DC1`.
+The Windows Server machine was renamed to `DC`.
 
 Server Manager was used to review the server configuration, including the computer name and network adapter settings.
 
